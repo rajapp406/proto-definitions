@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package client;
+
+service ClientService {
+  rpc createUser (CreateUserRequest) returns (UserResponse);
+  rpc fetchUser (FetchUserRequest) returns (UserResponse);
+  rpc createOrUpdateUserProfile (CreateOrUpdateUserProfileRequest) returns (UserProfileResponse);
+  rpc getUserProfile (GetUserProfileRequest) returns (UserProfileResponse);
+}
+
+message CreateUserRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message FetchUserRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message UserResponse {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  bool isActive = 5;
+  string password = 6;
+  UserProfileResponse profile = 7;
+}
+
+message UserProfileResponse {
+  string id = 1;
+  int32 age = 2;
+  string gender = 3;
+  string fitnessLevel = 4;
+  repeated string goals = 5;
+  string workoutFrequency = 6;
+  repeated string preferredWorkouts = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
+}
+
+message CreateOrUpdateUserProfileRequest {
+  string userId = 1;
+  int32 age = 2;
+  string gender = 3;
+  string fitnessLevel = 4;
+  repeated string goals = 5;
+  string workoutFrequency = 6;
+  repeated string preferredWorkouts = 7;
+}
+
+message GetUserProfileRequest {
+  string userId = 1;
+}
