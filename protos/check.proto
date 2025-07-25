@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package check;
+
+service ValidateService {
+  // User management
+  rpc createUser (CreateUserRequest) returns (UserResponse);
+  rpc fetchUser (FetchUserRequest) returns (UserResponse);
+  rpc login (LoginRequest) returns (LoginResponse);
+  
+  // Token management
+  rpc validateToken (TokenValidationRequest) returns (TokenValidationResponse);
+  rpc refreshToken (RefreshTokenRequest) returns (TokenResponse);
+  rpc logout (LogoutRequest) returns (LogoutResponse);
+}
+
+message CreateUserRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message FetchUserRequest {
+  string userId = 1;
+}
+
+message UserResponse {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  bool isActive = 5;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  bool isActive = 5;
+  string accessToken = 6;
+  string refreshToken = 7;
+  UserProfileResponse profile = 8;
+}
+
+message UserProfileResponse {
+  string id = 1;
+  int32 age = 2;
+  string gender = 3;
+  string fitnessLevel = 4;
+  repeated string goals = 5;
+  string workoutFrequency = 6;
+  repeated string preferredWorkouts = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
+}
+message TokenValidationRequest {
+  string accessToken = 1;
+  bool isRefreshToken = 2;
+}
+
+message TokenValidationResponse {
+  bool isValid = 1;
+  string userId = 2;
+  string email = 3;
+  int64 expiresAt = 4;
+  string error = 5;
+}
+
+message RefreshTokenRequest {
+  string refreshToken = 1;
+}
+
+message TokenResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  int64 expiresIn = 3;
+}
+
+message LogoutRequest {
+  string userId = 1;
+  string refreshToken = 2;
+}
+
+message LogoutResponse {
+  bool success = 1;
+  string message = 2;
+}
