@@ -12,6 +12,7 @@ service ValidateService {
   rpc validateToken (TokenValidationRequest) returns (TokenValidationResponse);
   rpc refreshToken (RefreshTokenRequest) returns (TokenResponse);
   rpc logout (LogoutRequest) returns (LogoutResponse);
+  rpc googleOAuth (GoogleAuthRequest) returns (LoginResponse);
 }
 
 message CreateUserRequest {
@@ -91,4 +92,8 @@ message LogoutRequest {
 message LogoutResponse {
   bool success = 1;
   string message = 2;
+}
+
+message GoogleAuthRequest {
+  string idToken = 1;
 }
