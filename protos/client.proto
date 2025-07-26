@@ -7,6 +7,7 @@ service ClientService {
   rpc fetchUser (FetchUserRequest) returns (UserResponse);
   rpc createOrUpdateUserProfile (CreateOrUpdateUserProfileRequest) returns (UserProfileResponse);
   rpc getUserProfile (GetUserProfileRequest) returns (UserProfileResponse);
+  rpc findOrCreateUserByGoogleId (GoogleUserRequest) returns (UserResponse);
 }
 
 message CreateUserRequest {
@@ -19,6 +20,15 @@ message CreateUserRequest {
 message FetchUserRequest {
   string email = 1;
   string password = 2;
+}
+
+message GoogleUserRequest {
+  string googleId = 1;
+  string email = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string displayName = 5;
+  string photoUrl = 6;
 }
 
 message UserResponse {

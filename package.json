@@ -1,16 +1,20 @@
 {
   "name": "@rajapp406/proto-definitions",
   "version": "1.0.0",
+  "description": "Protocol Buffer definitions for the fitness application",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["grpc", "protobuf", "proto"],
+  "author": "Raja Boddu",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "grpc-tools": "^1.13.0"
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.0",
+    "google-protobuf": "^3.21.2"
   },
-  "files": ["protos/"]
+  "files": [
+    "protos/"
+  ]
 }
